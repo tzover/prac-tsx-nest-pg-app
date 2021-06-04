@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+  front:
+    image: ${PROJ_NAME}-front:latest
+    container_name: ${PROJ_NAME}-front
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    volumes:
+      - ./front/app:/home/app
+      - front-volume:/home/app/node_modules
+    ports:
+      - ${DEV_PORT_FRONT}:3000
+      - ${PROD_PORT_FRONT}:3030
+    tty: true
+  back:
+    image: ${PROJ_NAME}-back:latest
+    container_name: ${PROJ_NAME}-back
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    volumes:
+      - ./back/app:/home/app
+      - back-volume:/home/app/node_modules
+    ports:
+      - ${DEV_PORT_BACK}:5000
+      - ${PROD_PORT_BACK}:5050
+    depends_on:
+      - mongo
+    tty: true
+  mongo:
+    image: mongo-${PROJ_NAME}:latest
+    container_name: mongo-${PROJ_NAME}
+    build:
+      context: ./mongo
+      dockerfile: Dockerfile
+    volumes:
+      - ./mongo/data/db:/data/db
+      - ./mongo/data/config:/data/config
+    ports:
+      - ${PORT_MONGODB}:${PORT_MONGODB}
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+
+volumes:
+  front-volume:
+    name: ${PROJ_NAME}-front-volume
+    driver: local
+  back-volume:
+    name: ${PROJ_NAME}-back-volume
+    driver: local
