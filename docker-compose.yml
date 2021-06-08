@@ -10,8 +10,8 @@ services:
       - ./front/app:/home/app
       - front-volume:/home/app/node_modules
     ports:
-      - ${DEV_PORT_FRONT}:3000
-      - ${PROD_PORT_FRONT}:3030
+      - ${PROD_PORT_FRONT}:${PROD_PORT_FRONT}
+      - ${DEV_PORT_FRONT}:${DEV_PORT_FRONT}
     tty: true
   back:
     image: ${PROJ_NAME}-back:latest
@@ -23,8 +23,8 @@ services:
       - ./back/app:/home/app
       - back-volume:/home/app/node_modules
     ports:
-      - ${DEV_PORT_BACK}:5000
-      - ${PROD_PORT_BACK}:5050
+      - ${PROD_PORT_BACK}:${PROD_PORT_BACK}
+      - ${DEV_PORT_BACK}:${DEV_PORT_BACK}
     depends_on:
       - mongo
     tty: true
@@ -39,9 +39,9 @@ services:
       - ./mongo/data/config:/data/config
     ports:
       - ${PORT_MONGODB}:${PORT_MONGODB}
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+    #   MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
 
 volumes:
   front-volume:
