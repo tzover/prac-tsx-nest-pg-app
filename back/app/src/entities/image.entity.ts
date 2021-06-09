@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm'
+import { Column, Entity, ObjectIdColumn, ObjectID } from 'typeorm'
 
 @Entity()
 export class Image {

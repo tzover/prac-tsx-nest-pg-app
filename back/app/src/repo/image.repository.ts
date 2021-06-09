@@ -9,11 +9,12 @@ export class ImageRepository extends Repository<Image> {
   }
 
   async addImage(addImageDto: AddImageDto): Promise<Image> {
-    const { filename, originalname, mimetype } = addImageDto
+    const { filename, originalname, mimetype, path } = addImageDto
     const Image = this.create({
       filename,
       originalname,
       mimetype,
+      path,
     })
     await this.save(Image)
     return Image

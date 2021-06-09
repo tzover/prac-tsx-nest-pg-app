@@ -1,6 +1,5 @@
 import React, { useState, useRef, useContext, useEffect } from 'react'
 import axios from 'axios'
-// import FormData from 'form-data'
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
 import { InputTextValue } from '../../providers/InputTextProvider'
@@ -40,7 +39,6 @@ const SendImage = () => {
 
   const onImageInputChange = (event) => {
     console.log('OnChange!')
-    // console.log(event.target.files[0])
     setFiles(event.target.files[0])
   }
 
@@ -76,7 +74,6 @@ const SendImage = () => {
 
   useEffect(() => {
     setFiles(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sendState])
 
   return (
@@ -111,14 +108,12 @@ const SendImage = () => {
         <MsgArea>{SelectedImageMsg}</MsgArea>
         <MsgArea>
           <ul>
-            {files ? (
+            {files && (
               <>
                 <li>Name: {files.name}</li>
                 <li>Type: {files.type}</li>
                 <li>Size: {files.size}</li>
               </>
-            ) : (
-              ''
             )}
           </ul>
         </MsgArea>
