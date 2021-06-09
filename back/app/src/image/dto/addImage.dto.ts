@@ -9,4 +9,7 @@ export class AddImageDto {
 
   @IsNotEmpty()
   mimetype: string
+
+  @IsNotEmpty()
+  path: string
 }

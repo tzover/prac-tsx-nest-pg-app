@@ -44,20 +44,9 @@ const ReceiveImage = () => {
       })
   }
 
-  const DeleteImage = async (id, name) => {
+  const DeleteImage = async (id) => {
     await axios
       .delete(`${endPoint}v1/image/${id}`)
-      .then((res) => {
-        // GetAllData()
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log(err)
-        }
-      })
-    const newName = name.replace(/\./g, ' ')
-    await axios
-      .delete(`${endPoint}v1/image/file/${newName}`)
       .then((res) => {
         GetAllData()
       })
@@ -71,10 +60,6 @@ const ReceiveImage = () => {
   useEffect(() => {
     GetAllData()
     setStateChange(null)
-
-    // const name = 'docker.png'
-    // const newName = name.replace(/\./g, '-')
-    // console.log(newName)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateChange])
@@ -94,7 +79,7 @@ const ReceiveImage = () => {
                     type='button'
                     aria-label='deleteButton'
                     color='secondary'
-                    onClick={() => DeleteImage(result.id, result.filename)}
+                    onClick={() => DeleteImage(result.id)}
                   >
                     <DeleteIcon />
                   </IconButton>

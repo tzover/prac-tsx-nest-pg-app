@@ -1,5 +1,4 @@
 import {
-  Body,
   Controller,
   Delete,
   Get,
@@ -14,6 +13,7 @@ import { FileInterceptor } from '@nestjs/platform-express'
 // import { Observable, of } from 'rxjs'
 import { diskStorage } from 'multer'
 import { v4 as uuidV4 } from 'uuid'
+
 import path = require('path')
 import { AddImageDto } from './dto/addImage.dto'
 import { Image } from '../entities/image.entity'
@@ -27,19 +27,15 @@ export class ImageController {
   async getImages(): Promise<Image[]> {
     return await this.imageService.getImages()
   }
-  @Get(':imgname')
-  seeUploadedFile(@Param('imgname') image, @Res() res): Promise<Image> {
+  @Get('/:imgname')
+  seeUploadedFile(@Param('imgname') image, @Res() res): Promise<Image[]> {
     return res.sendFile(image, { root: './public/pic/' })
   }
 
   @Delete('/:id')
   deleteDbImage(@Param('id') id: string): Promise<void> {
+    this.imageService.deleteImageFile(id)
     return this.imageService.deleteImageDb(id)
-  }
-  @Delete('/file/:name')
-  deleteImageFile(@Param('name') name: string): Promise<void> {
-    console.log(name)
-    return this.imageService.deleteImageDb(name)
   }
 
   @Post()
@@ -64,6 +60,7 @@ export class ImageController {
     @Req() req,
   ): Promise<Image> {
     console.log(req.file)
+    // console.log(req)
     if (!req.file) {
       return
     }

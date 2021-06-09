@@ -29,7 +29,7 @@ export class ImageService {
     return this.imageRepository.addImage(addImageDto)
   }
 
-  async getImageById(name: string): Promise<Image> {
+  async getImageByName(name: string): Promise<Image> {
     const found = await this.imageRepository.findOne(name)
     if (!found) {
       throw new NotFoundException(`Image name "${name}" not found`)
@@ -44,12 +44,10 @@ export class ImageService {
       throw new NotFoundException(`Image : "${id}" not found`)
     }
   }
-  async deleteImageFile(name: string): Promise<void> {
-    // const deleteName = JSON.stringify(name)
-    // this.getImageById(name)
-    const newName = name.replace(/\s+/g, '')
+  async deleteImageFile(id: string): Promise<void> {
+    console.log(id)
     try {
-      fs.unlinkSync(`./public/pic/${newName}`)
+      fs.unlinkSync(`./public/pic/fb.png`)
     } catch (err) {
       console.log(err)
     }
