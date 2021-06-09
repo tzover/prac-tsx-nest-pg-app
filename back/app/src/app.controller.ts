@@ -10,6 +10,7 @@ export class AppController {
     return this.appService.getApp()
   }
 
+  //test
   @Get('/v1/image/pic')
   getImages(@Res() res) {
     res.sendFile('')

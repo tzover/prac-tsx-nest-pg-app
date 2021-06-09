@@ -12,12 +12,13 @@ import '../../../styles/index.css'
 const ResultsContainar = styled.div`
   display: flex;
   justify-content: center;
-  gap: 20px;
+  /* gap: 20px; */
   margin: 0 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `
 
 const CardStyle = styled(Card)`
+  margin: 10px;
   width: 250px;
   height: 250px;
 `

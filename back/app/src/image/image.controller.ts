@@ -10,10 +10,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-// import { Observable, of } from 'rxjs'
 import { diskStorage } from 'multer'
 import { v4 as uuidV4 } from 'uuid'
-
 import path = require('path')
 import { AddImageDto } from './dto/addImage.dto'
 import { Image } from '../entities/image.entity'
@@ -46,8 +44,8 @@ export class ImageController {
         filename: (req, file, callback) => {
           console.log(file)
 
-          const filename: string = path.parse(file.originalname).name
-          // .replace(/\s/g, '') + uuidV4() // 名前が被っていても uuid が割り当てられる
+          const filename: string =
+            path.parse(file.originalname).name.replace(/\s/g, '') + uuidV4() // 名前が被っていても uuid が割り当てられる
           const extention: string = path.parse(file.originalname).ext
 
           callback(null, `${filename}${extention}`)

@@ -11,15 +11,16 @@ const ResultsContainar = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
+  /* gap: 20px; */
   margin: 0 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `
 
 const ResultText = styled.div`
   display: flex;
   /* border: solid; */
-  gap: 10px;
+  /* gap: 10px; */
+  margin-bottom: 10px;
 `
 
 const TextArea = styled.div`
