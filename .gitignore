@@ -1,3 +1,5 @@
 **/node_modules
 **/mongo/data/db/**
 !**/mongo/data/db/.gitkeep
+**/postgre/db/**
+!**/postgre/db/.gitkeep

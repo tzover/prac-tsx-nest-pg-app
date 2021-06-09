@@ -1,23 +1,23 @@
-import { Column, Entity, ObjectIdColumn, ObjectID } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 export class Image {
-  @ObjectIdColumn()
-  id: ObjectID
+  @PrimaryGeneratedColumn('uuid')
+  id: string
 
-  @Column()
+  @Column({ nullable: true })
   fieldname: string
 
   @Column()
   originalname: string
 
-  @Column()
+  @Column({ nullable: true })
   encoading: string
 
   @Column()
   mimetype: string
 
-  @Column()
+  @Column({ nullable: true })
   distination: string
 
   @Column()
@@ -26,6 +26,6 @@ export class Image {
   @Column()
   path: string
 
-  @Column()
+  @Column({ nullable: true })
   size: string
 }

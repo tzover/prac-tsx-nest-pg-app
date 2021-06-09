@@ -26,22 +26,22 @@ services:
       - ${PROD_PORT_BACK}:${PROD_PORT_BACK}
       - ${DEV_PORT_BACK}:${DEV_PORT_BACK}
     depends_on:
-      - mongo
+      - postgre
     tty: true
-  mongo:
-    image: mongo-${PROJ_NAME}:latest
-    container_name: mongo-${PROJ_NAME}
+  postgre:
+    image: postgre-${PROJ_NAME}:latest
+    container_name: postgre-${PROJ_NAME}
     build:
-      context: ./mongo
+      context: ./postgre
       dockerfile: Dockerfile
     volumes:
-      - ./mongo/data/db:/data/db
-      - ./mongo/data/config:/data/config
+      - ./postgre/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      # - ./postgre/db:/var/lib/postgresql/data
     ports:
-      - ${PORT_MONGODB}:${PORT_MONGODB}
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-    #   MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      - ${PORT_POSTGRES}:${PORT_POSTGRES}
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
 volumes:
   front-volume:
