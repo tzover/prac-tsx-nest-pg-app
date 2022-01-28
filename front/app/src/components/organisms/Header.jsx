@@ -2,11 +2,18 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 
-import logo from '../../images/Aisin_logo.svg'
-
 // interface
 
 // styled-components
+const HeaderLogo = styled.div`
+  width: 15%;
+  height: 40px;
+
+  margin: 1rem;
+  padding: 1rem;
+
+  background: white;
+`
 const HeaderArea = styled.div`
   width: 100%;
   height: 8vh;
@@ -19,11 +26,7 @@ const HeaderArea = styled.div`
   position: fixed;
   top: 0;
   z-index: 1;
-`
-const HeaderImg = styled.img`
-  width: 15%;
-  margin: 1em;
-  padding: 1em;
+  //
 `
 const HeaderMsgArea = styled.div`
   flex: 1;
@@ -44,7 +47,7 @@ const Header = ({ title }) => {
 
   return (
     <HeaderArea>
-      <HeaderImg src={logo} alt='logo' onClick={onClickAsnImg} />
+      <HeaderLogo onClick={onClickAsnImg}>Top page</HeaderLogo>
       <HeaderMsgArea>
         <p>{title}</p>
       </HeaderMsgArea>

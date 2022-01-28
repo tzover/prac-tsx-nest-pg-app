@@ -1,7 +1,7 @@
 FROM node:14.15.4-slim
 ENV CI true
-RUN npm i -g @nestjs/cli
-COPY ./app/package.json /home/app/package.json
+RUN npm i -g @nestjs/cli@7.6.0
+COPY ./app/package*.json /home/app/package*.json
 COPY ./app/.vscode /root/.vscode-server/data/Machine
 WORKDIR /home/app
 RUN npm install

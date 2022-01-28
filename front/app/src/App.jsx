@@ -14,8 +14,8 @@ import InputTextProvider from './components/providers/InputTextProvider'
 // styled-components
 
 // Functions and variables initialize
-const appName = 'Asn Tools Development'
-const creater = '© AsnEdgeCloudTeam - 2021'
+const appName = 'Tools Development'
+const creater = '© 2021'
 
 // MainComponents
 const App = () => (
